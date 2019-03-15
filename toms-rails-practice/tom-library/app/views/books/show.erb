@@ -10,9 +10,13 @@
 </ul>
 
 <%= form_for @author_book do |f| %>
+  <% if flash[:error] %>
+    <% flash[:error].each do |error| %>
+      <p><%= error %></p>
+    <% end %>
+  <% end %>
   <%= f.label :author_id %>
   <%= f.collection_select :author_id, @all_authors, :id, :name %>
   <%= f.hidden_field :book_id, value: @book.id %>
   <%= f.submit "Add author" %>
-
 <% end %>

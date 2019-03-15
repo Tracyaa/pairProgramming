@@ -12,6 +12,7 @@ class AuthorBooksController < ApplicationController
     if @author_book.valid?
       redirect_to book_path(@author_book.book)
     else
+      flash[:error] = @author_book.errors.full_messages
       redirect_to book_path(@author_book.book)
     end
   end
